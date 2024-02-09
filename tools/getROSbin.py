@@ -9,7 +9,7 @@ SQFS_OFFSET = 0x1000
 
 def download_ROS(version, arch, progress=True):
     url = MTDL_URL + version + "/routeros-" + arch + "-" + version + ".npk"
-    fw = requests.get(url, headers={"User-Agent": "RouterOS 6.19"}, stream=True)
+    fw = requests.get(url, headers={"User-Agent": "RouterOS 6.19"}, stream=True, timeout=60)
     fwfd = io.BytesIO()
     if fw.status_code == requests.codes.ok:
         if progress:
