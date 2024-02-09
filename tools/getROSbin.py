@@ -8,6 +8,8 @@ MTDL_URL = "https://download2.mikrotik.com/routeros/"
 SQFS_OFFSET = 0x1000
 
 def download_ROS(version, arch, progress=True):
+    """"""
+    
     url = MTDL_URL + version + "/routeros-" + arch + "-" + version + ".npk"
     fw = requests.get(url, headers={"User-Agent": "RouterOS 6.19"}, stream=True, timeout=60)
     fwfd = io.BytesIO()
@@ -28,6 +30,8 @@ def download_ROS(version, arch, progress=True):
         raise Exception("Error downloading firmware!")
 
 def get_binary(fwfd, path):
+    """"""
+    
     sqfs = PySquashfsImage.SquashFsImage(offset=SQFS_OFFSET)
     sqfs.setFile(fwfd)
 
@@ -38,6 +42,8 @@ def get_binary(fwfd, path):
     raise Exception("Path not found!")
 
 def main(version, arch, binary_path, save_name):
+    """"""
+    
     try:
         fw = download_ROS(version, arch)
     except Exception as e:
